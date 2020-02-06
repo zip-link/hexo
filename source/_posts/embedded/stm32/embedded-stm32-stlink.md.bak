@@ -1,0 +1,73 @@
+---
+title: 记ST_LINK与STM32的连接调试
+categories:
+  - 嵌入式
+  - stm32
+tags:
+  - stm32
+  - 调试器
+  - 单片机
+date: 2020-01-31 07:50:55
+---
+
+由于先前的32板子不能但不调试，就是不支持JTAG/SWD，平时测试程序只能是编译没问题了就直接下载到板子上，如果想看运行过程中的变量的值只能是靠自己的推测，或者一些自己想出来的土办法（比如用串口打印或者led显示）。
+<!-- more -->
+于是在某宝30多块入手mini32板子加st-link调试器。如图
+
+![图片](https://img-blog.csdn.net/20180809153918724?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+客服不是很专业，给了一些资料就完事了，再问一些问题，一直支支支吾吾的答不上来。只能是自己看资料解决了。
+
+下面将连接流程介绍下：
+
+首先保证连线的准确，这是重中之重，一定要检查清楚。
+
+其次安装客服给的ST-link v2驱动程序，安装过程中的选项默认就好包括路径。
+
+安装完成后插上STLINK打开设备管理器就可以看到STLINK的设备驱动了。
+
+![图片](https://img-blog.csdn.net/20180809154034819?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+现在并不能打开MDK调试，还有另外一步，安装STM32 ST-LINK Utility这里面包括了WIN10 的STlink的驱动解决方案，同样安装过程中的选项默认就好包括路径。
+
+这时如果没有什么大问题就可以用ST-LINK Utility下载可执行文件了，如果可以固件升级却出现这这样的提示：
+
+![图片](https://img-blog.csdn.net/2018080915375675?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+检查插线和主板，这表示ST-LINK连接没问题，问题是找不到主板。
+
+ST-LINK Utility运行无误后，表明你的硬件没有一点问题，现在就可以打开MDK（keil）了，只需简单几步：
+
+1：打开项目配置选项卡，点击Debug,配置仿真器为ST-LINK DEBUG,点击setting
+
+![图片](https://img-blog.csdn.net/20180809152550944?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+正常情况下：
+
+![图片](https://img-blog.csdn.net/20180809152730611?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+SW或者选择JATG，右侧SW/JATG Devise 下回出现id号。。。这种情况下直接点解确定
+
+还有可能会是这种情况：
+
+![图片](https://img-blog.csdn.net/20180809153001133?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+这表示ST-LINK连接无误，而查找不到目标板，请检查插线和主板。
+
+正常后点击Utilities选项卡：
+
+![图片](https://img-blog.csdn.net/20180809153219801?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+同样设置ST-LINK DEBUG 点击Setting
+
+![图片](https://img-blog.csdn.net/20180809153307751?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+Download Function 选择第一项，其余默认点击下方ADD
+
+![图片](https://img-blog.csdn.net/20180809153422171?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxMjgxNjAx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+
+选择你的开发板型号。
+
+至此，ST-link调试可以在MDK下下载，单步执行。
+————————————————
+版权声明：本文为CSDN博主「zip_link」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_41281601/article/details/81537058
