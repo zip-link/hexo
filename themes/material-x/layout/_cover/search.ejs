@@ -1,16 +1,6 @@
-<% if (theme.cover.logo) { %>
-  <img class='logo' src='<%- url_for(theme.cover.logo) %>'/>
-<% } else { %>
-  <h1 class='title'><%- theme.cover.title ? theme.cover.title : config.title %></h1>
-<% } %>
-<% if (theme.search.enable === true) { %>
-  <div class="m_search">
-    <form name="searchform" class="form u-search-form">
-      <input type="text" class="input u-search-input" placeholder="<%- theme.cover.search_placeholder %>" />
-      <i class="icon fas fa-search fa-fw"></i>
-    </form>
-  </div>
-<% } %>
+
+<img class='logo' src="/img/logo.gif"/>
+
 <div class='menu navgation'>
   <ul class='h-list'>
     <% if (theme.cover.features) { %>

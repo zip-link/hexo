@@ -17,7 +17,7 @@ var binft = function (r) {
         c.step ? c.step-- : (c.step = g, c.prefixP < l.length ? (c.prefixP >= 0 && (c.text += l[c.prefixP]), c.prefixP++) : "forward" === c.direction ? c.skillP < t.length ? (c.text += t[c.skillP], c.skillP++) : c.delay ? c.delay-- : (c.direction = "backward", c.delay = a) : c.skillP > 0 ? (c.text = c.text.slice(0, -1), c.skillP--) : (c.skillI = (c.skillI + 1) % o.length, c.direction = "forward")), r.textContent = c.text, r.appendChild(n(c.prefixP < l.length ? Math.min(s, s + c.prefixP) : Math.min(s, t.length - c.skillP))), setTimeout(i, d)
       }
       var l = "",
-      o = ["熬夜低效率写代码，不如好好睡觉。", "这个需求很简单。","php是最好的语言。", "你这段代码写得太丑了。","十年生死两茫茫，写程序，到天亮。","我们从来不关心Warning，只关心Error","用代码编写梦想，用梦想改变世界。","极宴娱心意，戚戚何所迫？"].map(function (r) {
+      o = ["熬夜低效率写代码，不如好好睡觉。", "这个需求很简单。","php是最好的语言。", "你这段代码写得太丑了。","十年生死两茫茫，写程序，到天亮。","我们从来不关心Warning，只关心Error","用代码编写梦想，用梦想改变世界。","退一步海阔天空，这是一种应有的心境"].map(function (r) {
       return r + ""
       }),
       a = 2,

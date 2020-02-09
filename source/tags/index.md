@@ -1,5 +1,5 @@
 ---
 layout: tag
 index: true
-title: all tags
+title: 所有标签
 ---

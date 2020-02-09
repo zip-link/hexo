@@ -17,7 +17,7 @@ timezone: ''
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://yoursite.com
+url: http://linzhipeng.top
 root: /
 permalink: :year/:month/:day/:title/
 permalink_defaults:
@@ -34,6 +34,8 @@ category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
 skip_render:
+#skip_render: [games/**, depview/**, knowledge/**]
+#跳过指定目录渲染
 
 # Writing
 new_post_name: :title.md # File name of new posts
